@@ -77,8 +77,19 @@ class CustomerRepositoryTest {
     }
 
     @Test
-    public void getCustomerNameByEmailAddres(){
+    public void getCustomerNameByEmailAddress(){
         String name = customerRepository.getCustomerNameByEmailAddress("carlos.lopez@gmail.com");
         System.out.println("name = " + name);
+    }
+
+    @Test
+    public void getCustomerNameByEmailAddressNative(){
+        String address = customerRepository.getCustomerbyEmailAddressNative("carlos.lopez@gmail.com");
+        System.out.println("address = " + address);
+    }
+    @Test
+    public void getCustomerNameByEmailAddressNativeNamedParam(){
+        String address = customerRepository.getCustomerbyEmailAddressNativeNamedParam("carlos.lopez@gmail.com","Carlos");
+        System.out.println("address = " + address);
     }
 }
