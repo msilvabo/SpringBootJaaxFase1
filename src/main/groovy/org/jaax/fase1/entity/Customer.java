@@ -23,7 +23,7 @@ public class Customer {
     @SequenceGenerator(
             name = "customer_sequence",
             sequenceName = "customer_sequence",
-            allocationSize = 50
+            allocationSize = 1
     )
     @GeneratedValue(
             generator = "customer_sequence",
@@ -37,4 +37,11 @@ public class Customer {
             nullable = false
     )
     private String email;
+
+//    private String customerCity;
+//    private String customerMainStreet;
+//    private String customerSecondaryStreet;
+
+    @Embedded
+    private Address address;
 }
