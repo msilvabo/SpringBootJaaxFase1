@@ -8,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class CustomerRepositoryTest {
     @Autowired
@@ -29,14 +27,14 @@ class CustomerRepositoryTest {
     public void saveCustomerWithAddressEmbedded(){
         Address address = Address.builder()
                 .mainStreet("Av Camacho")
-                .secondaryStreet("calle Loayza")
+                .secondaryStreet("calle Juan de la Riva")
                 .city("La Paz")
                 .build();
 
         Customer customer = Customer.builder()
-                .firstname("Moises8")
-                .lastname("Silva8")
-                .email("moises8.silva@gmail.com")
+                .firstname("Marcos")
+                .lastname("Andrade")
+                .email("marcos.andrade@gmail.com")
                 .address(address)
                 .build();
         customerRepository.save(customer);
@@ -52,5 +50,23 @@ class CustomerRepositoryTest {
     public void findAllCustomers() {
         List<Customer> customers = customerRepository.findAll();
         System.out.println("customer = " + customers);
+    }
+
+    @Test
+    public void findAllCustomerFirstNameContaining(){
+        List<Customer> customerList = customerRepository.findByFirstnameContainingIgnoreCase("os");
+        System.out.println("customer = " + customerList);
+    }
+
+    @Test
+    public void findAllCustomersLastNameNotNull(){
+        List<Customer> customerList = customerRepository.findByLastnameNotNull();
+        System.out.println("customer = " + customerList);
+    }
+
+    @Test
+    public void findAllCustomersByAddressCity(){
+        List<Customer> customerList = customerRepository.findByAddress_CityContainingIgnoreCase("paz");
+        System.out.println("customer = " + customerList);
     }
 }
