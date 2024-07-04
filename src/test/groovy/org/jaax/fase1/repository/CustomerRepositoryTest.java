@@ -69,4 +69,16 @@ class CustomerRepositoryTest {
         List<Customer> customerList = customerRepository.findByAddress_CityContainingIgnoreCase("paz");
         System.out.println("customer = " + customerList);
     }
+
+    @Test
+    public void getCustomerByEmailAddress(){
+        Customer customer = customerRepository.getCustomerByEmailAddress("marcos.andrade@gmail.com");
+        System.out.println("customer = " + customer);
+    }
+
+    @Test
+    public void getCustomerNameByEmailAddres(){
+        String name = customerRepository.getCustomerNameByEmailAddress("carlos.lopez@gmail.com");
+        System.out.println("name = " + name);
+    }
 }
