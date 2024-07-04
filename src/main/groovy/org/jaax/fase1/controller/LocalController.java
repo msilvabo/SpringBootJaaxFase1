@@ -1,6 +1,7 @@
 package org.jaax.fase1.controller;
 
 import org.jaax.fase1.entity.Local;
+import org.jaax.fase1.error.LocalNotFoundException;
 import org.jaax.fase1.service.LocalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class LocalController {
     }
 
     @GetMapping("/findById/{id}")
-    public Local findById(@PathVariable Long id){
+    public Local findById(@PathVariable Long id) throws LocalNotFoundException {
         return localService.findById(id);
     }
     @GetMapping("/findByNameJPQL/{name}")

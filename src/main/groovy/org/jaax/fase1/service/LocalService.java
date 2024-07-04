@@ -1,13 +1,14 @@
 package org.jaax.fase1.service;
 
 import org.jaax.fase1.entity.Local;
+import org.jaax.fase1.error.LocalNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface LocalService {
     List<Local> findAllLocals();
-    Local findById(Long id);
+    Local findById(Long id) throws LocalNotFoundException;
     Local saveLocal(Local local);
     Local updateLocal(Long id, Local local);
     void deleteLocal(Long id);

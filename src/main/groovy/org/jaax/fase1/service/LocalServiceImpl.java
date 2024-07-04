@@ -1,6 +1,7 @@
 package org.jaax.fase1.service;
 
 import org.jaax.fase1.entity.Local;
+import org.jaax.fase1.error.LocalNotFoundException;
 import org.jaax.fase1.repository.LocalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,12 @@ public class LocalServiceImpl implements LocalService {
     }
 
     @Override
-    public Local findById(Long id) {
-        return localRepository.findById(id).get();
+    public Local findById(Long id) throws LocalNotFoundException {
+        Optional<Local> local = localRepository.findById(id);
+        if(local.isEmpty()){
+            throw  new LocalNotFoundException("Local is not available");
+        }
+        return local.get();
     }
 
     @Override
