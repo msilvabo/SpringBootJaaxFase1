@@ -1,5 +1,6 @@
 package org.jaax.fase1.controller;
 
+import jakarta.validation.Valid;
 import org.jaax.fase1.entity.Local;
 import org.jaax.fase1.error.LocalNotFoundException;
 import org.jaax.fase1.service.LocalService;
@@ -39,7 +40,7 @@ public class LocalController {
     }
 
     @PostMapping("/createLocal")
-    public Local createLocal(@RequestBody Local local){
+    public Local createLocal(@Valid @RequestBody Local local){
         return localService.saveLocal(local);
     }
 
