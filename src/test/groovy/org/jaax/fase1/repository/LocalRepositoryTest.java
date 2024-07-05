@@ -6,10 +6,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class LocalRepositoryTest {
+
     @Autowired
     private LocalRepository localRepository;
 
@@ -25,5 +28,11 @@ class LocalRepositoryTest {
                 .manager(manager)
                 .build();
         localRepository.save(local);
+    }
+
+    @Test
+    public void findAllLocals(){
+        List<Local> locals = localRepository.findAll();
+        System.out.println("locals: " + locals);
     }
 }

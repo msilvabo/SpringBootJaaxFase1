@@ -2,10 +2,7 @@ package org.jaax.fase1.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
@@ -14,6 +11,7 @@ import org.hibernate.validator.constraints.Length;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString(exclude = "manager")
 public class Local {
 
     @Id
@@ -24,16 +22,18 @@ public class Local {
     )
     @GeneratedValue(
             generator = "local_sequence",
-            strategy = GenerationType.AUTO
+            strategy = GenerationType.SEQUENCE
     )
-    private Long localId;
+    private Long local_id;
+
     @NotBlank(message = "please add the name")
     private String name;
     @Length(min=4, max=10, message = "please insert code min 4 characters and max 10 characters")
     private String code;
     private String floor;
     @OneToOne(
-            cascade = CascadeType.ALL
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.LAZY
     )
     @JoinColumn(
             name = "manager_id",
