@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.List;
+
 @Entity
 @Table(name="locals")
 @Data
@@ -33,11 +35,22 @@ public class Local {
     private String floor;
     @OneToOne(
             cascade = CascadeType.PERSIST,
-            fetch = FetchType.EAGER
+            fetch = FetchType.EAGER,
+            optional = true
     )
     @JoinColumn(
             name = "manager_id",
             referencedColumnName = "managerId"
     )
     private Manager manager;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+    @JoinColumn(
+            name = "local_id",
+            referencedColumnName = "local_id"
+    )
+    private List<Order> orders;
 }
