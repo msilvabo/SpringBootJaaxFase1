@@ -33,7 +33,7 @@ public class Local {
     private String floor;
     @OneToOne(
             cascade = CascadeType.PERSIST,
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
     )
     @JoinColumn(
             name = "manager_id",
