@@ -17,12 +17,27 @@ import org.hibernate.validator.constraints.Length;
 public class Local {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @SequenceGenerator(
+            name = "local_sequence",
+            sequenceName = "local_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            generator = "local_sequence",
+            strategy = GenerationType.AUTO
+    )
+    private Long localId;
     @NotBlank(message = "please add the name")
     private String name;
     @Length(min=4, max=10, message = "please insert code min 4 characters and max 10 characters")
     private String code;
     private String floor;
-
+    @OneToOne(
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(
+            name = "manager_id",
+            referencedColumnName = "managerId"
+    )
+    private Manager manager;
 }
