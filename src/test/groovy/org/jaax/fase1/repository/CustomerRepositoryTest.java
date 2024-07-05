@@ -92,4 +92,9 @@ class CustomerRepositoryTest {
         String address = customerRepository.getCustomerbyEmailAddressNativeNamedParam("carlos.lopez@gmail.com","Carlos");
         System.out.println("address = " + address);
     }
+
+    @Test
+    public void updateCustomerEmailByFistName(){
+        customerRepository.updateCustomerEmailByFistName("Marcos","correo.modificado2@gmail.com");
+    }
 }
